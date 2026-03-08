@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Chúc Mừng 8/3</title>
+<title>Một lá thư dành cho bạn</title>
 
 <style>
 
@@ -17,7 +17,7 @@ font-family:Arial;
 overflow:hidden;
 }
 
-/* khung */
+/* khung chính */
 
 .card{
 background:white;
@@ -26,12 +26,15 @@ border-radius:20px;
 text-align:center;
 box-shadow:0 20px 40px rgba(0,0,0,0.2);
 z-index:2;
+animation:fadeIn 1.5s;
 }
 
 h1{
 color:#ff3b8d;
-font-size:40px;
+font-size:36px;
 }
+
+/* nút */
 
 button{
 margin-top:20px;
@@ -43,10 +46,11 @@ color:white;
 font-size:18px;
 cursor:pointer;
 box-shadow:0 0 10px #ff3b8d;
+transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.05);
+transform:scale(1.08);
 box-shadow:0 0 25px #ff3b8d;
 }
 
@@ -56,19 +60,21 @@ box-shadow:0 0 25px #ff3b8d;
 position:fixed;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(0);
+transform:translate(-50%,-60%) scale(0);
 background:white;
 padding:40px;
 border-radius:20px;
-width:320px;
+width:340px;
 text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,0.3);
-transition:0.6s;
+box-shadow:0 25px 60px rgba(0,0,0,0.3);
+transition:all 0.6s ease;
 z-index:10;
+opacity:0;
 }
 
 .letter.show{
 transform:translate(-50%,-50%) scale(1);
+opacity:1;
 }
 
 .letter h2{
@@ -102,6 +108,13 @@ animation:fly 2s linear forwards;
 100%{transform:translateY(-200px) scale(2);opacity:0}
 }
 
+/* hiệu ứng xuất hiện */
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px)}
+to{opacity:1}
+}
+
 </style>
 </head>
 
@@ -109,9 +122,9 @@ animation:fly 2s linear forwards;
 
 <div class="card">
 
-<h1>🌸 Chúc Mừng 8/3 🌸</h1>
+<h1>🌙 Có một lá thư đang chờ bạn mở</h1>
 
-<p>Nhấn vào nút để mở thư 💌</p>
+<p>Nhấn vào nút bên dưới để xem điều bí mật.</p>
 
 <button onclick="openLetter()">Mở thư</button>
 
@@ -119,11 +132,20 @@ animation:fly 2s linear forwards;
 
 <div class="letter" id="letter">
 
-<h2>💌 Thư gửi bạn</h2>
+<h2>💌 Gửi người bạn thân</h2>
 
 <p>
-Chúc bạn một ngày 8/3 thật nhiều niềm vui,  
-luôn xinh đẹp, hạnh phúc và gặp thật nhiều may mắn 🌸
+Không biết nói gì cho ngầu nên nói đơn giản thôi.
+</p>
+
+<p>
+Chúc bạn ngày 8/3 thật vui,
+ăn ngon, ngủ kỹ, ít drama
+và lúc nào cũng cười nhiều như bình thường.
+</p>
+
+<p>
+Cảm ơn vì đã luôn là một người bạn rất ổn.
 </p>
 
 </div>
