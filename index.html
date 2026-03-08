@@ -2,117 +2,109 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Một lá thư dành cho bạn</title>
+<title>Thư gửi tới bạn</title>
 
 <style>
 
 body{
 margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#ffd6e7,#ffeef6);
 height:100vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffd6eb,#ffc2f0);
-font-family:Arial;
 overflow:hidden;
 }
 
-/* khung chính */
-
-.card{
-background:white;
-padding:40px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.2);
-z-index:2;
-animation:fadeIn 1.5s;
+/* hoa */
+.sakura{
+position:fixed;
+top:-20px;
+pointer-events:none;
+animation:fall linear forwards;
 }
 
-h1{
-color:#ff3b8d;
-font-size:36px;
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
 }
 
-/* nút */
+/* bì thư */
 
-button{
-margin-top:20px;
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#ff3b8d;
-color:white;
-font-size:18px;
+.envelope{
+width:260px;
+height:160px;
+background:#ff7aa8;
+border-radius:10px;
 cursor:pointer;
-box-shadow:0 0 10px #ff3b8d;
-transition:0.3s;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+position:relative;
+z-index:10;
 }
 
-button:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px #ff3b8d;
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-left:130px solid transparent;
+border-right:130px solid transparent;
+border-top:90px solid #ff9dc0;
+}
+
+/* chữ dưới */
+
+.open-text{
+margin-top:20px;
+font-size:22px;
+color:#ff4d88;
+font-weight:600;
+cursor:pointer;
 }
 
 /* thư */
 
 .letter{
 position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-60%) scale(0);
 background:white;
-padding:40px;
-border-radius:20px;
 width:340px;
+padding:30px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
 text-align:center;
-box-shadow:0 25px 60px rgba(0,0,0,0.3);
-transition:all 0.6s ease;
-z-index:10;
 opacity:0;
+transform:scale(.8);
+transition:.6s;
+pointer-events:none;
 }
 
 .letter.show{
-transform:translate(-50%,-50%) scale(1);
 opacity:1;
+transform:scale(1);
+pointer-events:auto;
 }
 
 .letter h2{
-color:#ff3b8d;
-}
-
-/* hoa anh đào */
-
-.sakura{
-position:absolute;
-top:-50px;
-font-size:22px;
-animation:fall linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateX(0) translateY(0) rotate(0)}
-100%{transform:translateX(200px) translateY(110vh) rotate(360deg)}
+color:#ff5c93;
+margin-top:0;
 }
 
 /* tim */
 
 .heart{
-position:absolute;
-font-size:26px;
+position:fixed;
+font-size:20px;
 animation:fly 2s linear forwards;
 }
 
 @keyframes fly{
-0%{transform:translateY(0);opacity:1}
-100%{transform:translateY(-200px) scale(2);opacity:0}
+to{
+transform:translateY(-200px);
+opacity:0;
 }
-
-/* hiệu ứng xuất hiện */
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(30px)}
-to{opacity:1}
 }
 
 </style>
@@ -120,81 +112,109 @@ to{opacity:1}
 
 <body>
 
-<div class="card">
+<div id="envelope" class="envelope"></div>
 
-<h1>🌙 Có một lá thư đang chờ bạn mở</h1>
+<div id="openText" class="open-text">
+💌 Thư gửi tới bạn
+</div>
 
-<p>Nhấn vào nút bên dưới để xem điều bí mật.</p>
+<div id="letter" class="letter">
 
-<button onclick="openLetter()">Mở thư</button>
+<h2>💌 Gửi em</h2>
+
+<p>
+Nhân ngày 8/3, anh chúc em luôn vui vẻ,
+mạnh mẽ và gặp thật nhiều điều tốt đẹp trong cuộc sống.
+</p>
+
+<p>
+Đối với anh, em là một người rất đặc biệt.
+Ở cạnh em luôn mang lại cảm giác thoải mái
+và khiến mọi thứ trở nên dễ chịu hơn.
+</p>
+
+<p>
+Hy vọng em sẽ luôn giữ được sự tự tin
+và nụ cười của mình.
+</p>
+
+<p>
+Và nếu có lúc em cần một người để nói chuyện,
+anh vẫn luôn sẵn sàng.
+</p>
 
 </div>
 
-<div class="letter" id="letter">
-
-<h2>💌 Gửi người bạn thân</h2>
-
-<p>
-Không biết nói gì cho ngầu nên nói đơn giản thôi.
-</p>
-
-<p>
-Chúc bạn ngày 8/3 thật vui,
-ăn ngon, ngủ kỹ, ít drama
-và lúc nào cũng cười nhiều như bình thường.
-</p>
-
-<p>
-Cảm ơn vì đã luôn là một người bạn rất ổn.
-</p>
-
-</div>
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
 
 <script>
-
-/* hoa anh đào */
-
-function createSakura(){
-
-const s=document.createElement("div")
-s.className="sakura"
-s.innerHTML="🌸"
-
-s.style.left=Math.random()*100+"vw"
-s.style.animationDuration=(5+Math.random()*5)+"s"
-
-document.body.appendChild(s)
-
-setTimeout(()=>s.remove(),10000)
-
-}
-
-setInterval(createSakura,250)
-
-/* tim bay */
-
-document.addEventListener("click",function(e){
-
-const heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="💖"
-
-heart.style.left=e.clientX+"px"
-heart.style.top=e.clientY+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),2000)
-
-})
 
 /* mở thư */
 
 function openLetter(){
 
+document.getElementById("envelope").style.display="none"
+document.getElementById("openText").style.display="none"
+
 document.getElementById("letter").classList.add("show")
 
+document.getElementById("music").play()
+
+createHearts()
+
 }
+
+document.getElementById("envelope").onclick=openLetter
+document.getElementById("openText").onclick=openLetter
+
+
+/* tim bay */
+
+function createHearts(){
+
+for(let i=0;i<20;i++){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="💖"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.bottom="0"
+heart.style.fontSize=(15+Math.random()*20)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),2000)
+
+}
+
+}
+
+
+/* hoa rơi liên tục ngẫu nhiên */
+
+function createSakura(){
+
+let s=document.createElement("div")
+
+s.className="sakura"
+s.innerHTML="🌸"
+
+s.style.left=Math.random()*100+"vw"
+s.style.fontSize=(14+Math.random()*10)+"px"
+s.style.animationDuration=(4+Math.random()*6)+"s"
+
+document.body.appendChild(s)
+
+setTimeout(()=>{
+s.remove()
+},10000)
+
+}
+
+setInterval(createSakura,300)
 
 </script>
 
