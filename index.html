@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc Mừng 8/3</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6eb,#ffc2f0);
+font-family:Arial;
+overflow:hidden;
+}
+
+/* khung */
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+z-index:2;
+}
+
+h1{
+color:#ff3b8d;
+font-size:40px;
+}
+
+button{
+margin-top:20px;
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#ff3b8d;
+color:white;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 10px #ff3b8d;
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px #ff3b8d;
+}
+
+/* thư */
+
+.letter{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:white;
+padding:40px;
+border-radius:20px;
+width:320px;
+text-align:center;
+box-shadow:0 20px 50px rgba(0,0,0,0.3);
+transition:0.6s;
+z-index:10;
+}
+
+.letter.show{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.letter h2{
+color:#ff3b8d;
+}
+
+/* hoa anh đào */
+
+.sakura{
+position:absolute;
+top:-50px;
+font-size:22px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateX(0) translateY(0) rotate(0)}
+100%{transform:translateX(200px) translateY(110vh) rotate(360deg)}
+}
+
+/* tim */
+
+.heart{
+position:absolute;
+font-size:26px;
+animation:fly 2s linear forwards;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-200px) scale(2);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🌸 Chúc Mừng 8/3 🌸</h1>
+
+<p>Nhấn vào nút để mở thư 💌</p>
+
+<button onclick="openLetter()">Mở thư</button>
+
+</div>
+
+<div class="letter" id="letter">
+
+<h2>💌 Thư gửi bạn</h2>
+
+<p>
+Chúc bạn một ngày 8/3 thật nhiều niềm vui,  
+luôn xinh đẹp, hạnh phúc và gặp thật nhiều may mắn 🌸
+</p>
+
+</div>
+
+<script>
+
+/* hoa anh đào */
+
+function createSakura(){
+
+const s=document.createElement("div")
+s.className="sakura"
+s.innerHTML="🌸"
+
+s.style.left=Math.random()*100+"vw"
+s.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(s)
+
+setTimeout(()=>s.remove(),10000)
+
+}
+
+setInterval(createSakura,250)
+
+/* tim bay */
+
+document.addEventListener("click",function(e){
+
+const heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="💖"
+
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),2000)
+
+})
+
+/* mở thư */
+
+function openLetter(){
+
+document.getElementById("letter").classList.add("show")
+
+}
+
+</script>
+
+</body>
+</html>
